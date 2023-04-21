@@ -1,5 +1,10 @@
 var NAVTREEINDEX6 =
 {
+"struct_ort_training_api.html#a50982397c2a7fc945f9367a4f81f110d":[3,0,0,21],
+"struct_ort_training_api.html#a5609572bb637dba45e03230b56c001c1":[3,0,0,12],
+"struct_ort_training_api.html#a651180eb5913d921982b7218e5c003bf":[3,0,0,2],
+"struct_ort_training_api.html#a71f9863203af4c43f9c08f2f6c25da54":[3,0,0,17],
+"struct_ort_training_api.html#a76e5808ed8b6a3333f5bb70997c4f0af":[3,0,0,25],
 "struct_ort_training_api.html#a7c1d4da17b2924f919e061c4d767e1ba":[3,0,0,26],
 "struct_ort_training_api.html#a7dc0329f3d555125a1b05333d9db2a5f":[3,0,0,24],
 "struct_ort_training_api.html#a7e374f9096cba214fee0036b5f7db253":[3,0,0,14],

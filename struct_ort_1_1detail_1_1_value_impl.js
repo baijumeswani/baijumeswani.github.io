@@ -8,6 +8,7 @@ var struct_ort_1_1detail_1_1_value_impl =
     [ "FillSparseTensorCsr", "struct_ort_1_1detail_1_1_value_impl.html#af67cc830bdf35e40717b06ca70b22ead", null ],
     [ "FillStringTensor", "struct_ort_1_1detail_1_1_value_impl.html#ac98717a93e02f4b91ebabaf3c4ab891c", null ],
     [ "FillStringTensorElement", "struct_ort_1_1detail_1_1_value_impl.html#a0a59534f82ccf9ff55b8a692270e4503", null ],
+    [ "GetResizedStringTensorElementBuffer", "struct_ort_1_1detail_1_1_value_impl.html#afbde85d0a4ef2f1a38ff369d218ec56c", null ],
     [ "GetTensorMutableData", "struct_ort_1_1detail_1_1_value_impl.html#a28317ae875d9c8b35f0cbed64f776c5a", null ],
     [ "GetTensorMutableRawData", "struct_ort_1_1detail_1_1_value_impl.html#a8b55de64b5457b5fd0538ec8225a0507", null ],
     [ "UseBlockSparseIndices", "struct_ort_1_1detail_1_1_value_impl.html#a68ba9e6d44e6a1141c04d1fefaa3b6c6", null ],

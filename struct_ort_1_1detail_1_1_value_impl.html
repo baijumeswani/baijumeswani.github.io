@@ -143,6 +143,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0a59534f82ccf9ff55b8a692270e4503"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_ort_1_1detail_1_1_value_impl.html#a0a59534f82ccf9ff55b8a692270e4503">FillStringTensorElement</a> (const char *s, size_t index)</td></tr>
 <tr class="memdesc:a0a59534f82ccf9ff55b8a692270e4503"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a single string in a string tensor.  <br /></td></tr>
 <tr class="separator:a0a59534f82ccf9ff55b8a692270e4503"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbde85d0a4ef2f1a38ff369d218ec56c"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_ort_1_1detail_1_1_value_impl.html#afbde85d0a4ef2f1a38ff369d218ec56c">GetResizedStringTensorElementBuffer</a> (size_t index, size_t buffer_length)</td></tr>
+<tr class="memdesc:afbde85d0a4ef2f1a38ff369d218ec56c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate if necessary and obtain a pointer to a UTF-8 encoded string element buffer indexed by the flat element index, of the specified length.  <br /></td></tr>
+<tr class="separator:afbde85d0a4ef2f1a38ff369d218ec56c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8b80e2a725f45cdeceb06bcba643e978"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_ort_1_1detail_1_1_value_impl.html#a8b80e2a725f45cdeceb06bcba643e978">UseCooIndices</a> (int64_t *indices_data, size_t indices_num)</td></tr>
 <tr class="memdesc:a8b80e2a725f45cdeceb06bcba643e978"><td class="mdescLeft">&#160;</td><td class="mdescRight">Supplies COO format specific indices and marks the contained sparse tensor as being a COO format tensor. Values are supplied with a CreateSparseTensor() API. The supplied indices are not copied and the user allocated buffers lifespan must eclipse that of the OrtValue. The location of the indices is assumed to be the same as specified by OrtMemoryInfo argument at the creation time.  <br /></td></tr>
 <tr class="separator:a8b80e2a725f45cdeceb06bcba643e978"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -201,6 +204,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a11173caf6ac2fdc03fb1c3981fec9b3d inherit pub_methods_struct_ort_1_1detail_1_1_const_value_impl"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_ort_1_1detail_1_1_const_value_impl.html#a11173caf6ac2fdc03fb1c3981fec9b3d">GetStringTensorElement</a> (size_t buffer_length, size_t element_index, void *buffer) const</td></tr>
 <tr class="memdesc:a11173caf6ac2fdc03fb1c3981fec9b3d inherit pub_methods_struct_ort_1_1detail_1_1_const_value_impl"><td class="mdescLeft">&#160;</td><td class="mdescRight">The API copies UTF-8 encoded bytes for the requested string element contained within a tensor or a sparse tensor into a provided buffer. Use <a class="el" href="struct_ort_1_1detail_1_1_const_value_impl.html#a21460daeba8be912b5d21ef9aa6dd717" title="The API returns a byte length of UTF-8 encoded string element contained in either a tensor or a spare...">GetStringTensorElementLength()</a> to obtain the length of the buffer to allocate.  <br /></td></tr>
 <tr class="separator:a11173caf6ac2fdc03fb1c3981fec9b3d inherit pub_methods_struct_ort_1_1detail_1_1_const_value_impl"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e2a3eb2f60e10b5d5832b57d46c611a inherit pub_methods_struct_ort_1_1detail_1_1_const_value_impl"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_ort_1_1detail_1_1_const_value_impl.html#a1e2a3eb2f60e10b5d5832b57d46c611a">GetStringTensorElement</a> (size_t element_index) const</td></tr>
+<tr class="memdesc:a1e2a3eb2f60e10b5d5832b57d46c611a inherit pub_methods_struct_ort_1_1detail_1_1_const_value_impl"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns string tensor UTF-8 encoded string element. Use of this API is recommended over <a class="el" href="struct_ort_1_1detail_1_1_const_value_impl.html#a11173caf6ac2fdc03fb1c3981fec9b3d" title="The API copies UTF-8 encoded bytes for the requested string element contained within a tensor or a sp...">GetStringTensorElement()</a> that takes void* buffer pointer.  <br /></td></tr>
+<tr class="separator:a1e2a3eb2f60e10b5d5832b57d46c611a inherit pub_methods_struct_ort_1_1detail_1_1_const_value_impl"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a21460daeba8be912b5d21ef9aa6dd717 inherit pub_methods_struct_ort_1_1detail_1_1_const_value_impl"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_ort_1_1detail_1_1_const_value_impl.html#a21460daeba8be912b5d21ef9aa6dd717">GetStringTensorElementLength</a> (size_t element_index) const</td></tr>
 <tr class="memdesc:a21460daeba8be912b5d21ef9aa6dd717 inherit pub_methods_struct_ort_1_1detail_1_1_const_value_impl"><td class="mdescLeft">&#160;</td><td class="mdescRight">The API returns a byte length of UTF-8 encoded string element contained in either a tensor or a spare tensor values.  <br /></td></tr>
 <tr class="separator:a21460daeba8be912b5d21ef9aa6dd717 inherit pub_methods_struct_ort_1_1detail_1_1_const_value_impl"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -569,6 +575,47 @@ template&lt;typename T &gt; </div>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="afbde85d0a4ef2f1a38ff369d218ec56c" name="afbde85d0a4ef2f1a38ff369d218ec56c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afbde85d0a4ef2f1a38ff369d218ec56c">&#9670;&#160;</a></span>GetResizedStringTensorElementBuffer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">char * <a class="el" href="struct_ort_1_1detail_1_1_value_impl.html">Ort::detail::ValueImpl</a>&lt; T &gt;::GetResizedStringTensorElementBuffer </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>buffer_length</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Allocate if necessary and obtain a pointer to a UTF-8 encoded string element buffer indexed by the flat element index, of the specified length. </p>
+<p>This API is for advanced usage. It avoids a need to construct an auxiliary array of string pointers, and allows to write data directly (do not zero terminate).</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index</td><td></td></tr>
+    <tr><td class="paramname">buffer_length</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a pointer to a writable buffer</dd></dl>
 
 </div>
 </div>

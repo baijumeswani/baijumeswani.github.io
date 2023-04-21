@@ -162,6 +162,7 @@ var group___global =
       [ "GetOnnxTypeFromTypeInfo", "struct_ort_api.html#a50d7f38cb7ffbf0e7752b12d9d7fc25a", null ],
       [ "GetOpaqueValue", "struct_ort_api.html#aab40422beeb98330f90cf758eaba36a7", null ],
       [ "GetOptionalContainedTypeInfo", "struct_ort_api.html#a4192358ad43476a88208cb08079bba41", null ],
+      [ "GetResizedStringTensorElementBuffer", "struct_ort_api.html#aa21177addf47083b566d433ea845f1e2", null ],
       [ "GetSequenceElementType", "struct_ort_api.html#a66d1082c98f5a76c3e47a2d92f3ed402", null ],
       [ "GetSessionConfigEntry", "struct_ort_api.html#a56a55a513894f1830577b27bda99070e", null ],
       [ "GetSparseTensorFormat", "struct_ort_api.html#a11e14c4dd35b1390ab8953a2f9fbbb6b", null ],

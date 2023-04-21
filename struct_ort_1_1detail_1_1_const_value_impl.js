@@ -11,6 +11,7 @@ var struct_ort_1_1detail_1_1_const_value_impl =
     [ "GetStringTensorContent", "struct_ort_1_1detail_1_1_const_value_impl.html#a00830aa9d8da4892472df573b3bb1656", null ],
     [ "GetStringTensorDataLength", "struct_ort_1_1detail_1_1_const_value_impl.html#a2700d2f2a5d9a7922c81419cc9fed664", null ],
     [ "GetStringTensorElement", "struct_ort_1_1detail_1_1_const_value_impl.html#a11173caf6ac2fdc03fb1c3981fec9b3d", null ],
+    [ "GetStringTensorElement", "struct_ort_1_1detail_1_1_const_value_impl.html#a1e2a3eb2f60e10b5d5832b57d46c611a", null ],
     [ "GetStringTensorElementLength", "struct_ort_1_1detail_1_1_const_value_impl.html#a21460daeba8be912b5d21ef9aa6dd717", null ],
     [ "GetTensorData", "struct_ort_1_1detail_1_1_const_value_impl.html#aed947feb6d46847d3d6cc0289b377fe6", null ],
     [ "GetTensorMemoryInfo", "struct_ort_1_1detail_1_1_const_value_impl.html#a7342c33f055407202f6b0e4ed209ead0", null ],

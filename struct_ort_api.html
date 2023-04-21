@@ -181,6 +181,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4192358ad43476a88208cb08079bba41"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___global.html#gabbdf49d59489efef1b125d8e0d59adc6">OrtStatus</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_ort_api.html#a4192358ad43476a88208cb08079bba41">GetOptionalContainedTypeInfo</a> (const <a class="el" href="group___global.html#gaa5e6bf9394d9a25edf5e89a8b10872f2">OrtOptionalTypeInfo</a> *optional_type_info, <a class="el" href="group___global.html#ga651ed4317ee24a2fb83ae63dd03687b2">OrtTypeInfo</a> **out)</td></tr>
 <tr class="memdesc:a4192358ad43476a88208cb08079bba41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get OrtTypeInfo for the allowed contained type from an <a class="el" href="group___global.html#gaa5e6bf9394d9a25edf5e89a8b10872f2">OrtOptionalTypeInfo</a>.  <br /></td></tr>
 <tr class="separator:a4192358ad43476a88208cb08079bba41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa21177addf47083b566d433ea845f1e2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___global.html#gabbdf49d59489efef1b125d8e0d59adc6">OrtStatus</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_ort_api.html#aa21177addf47083b566d433ea845f1e2">GetResizedStringTensorElementBuffer</a> (<a class="el" href="group___global.html#gaab167acf3fe9dabc0195b993fbe7ee7d">OrtValue</a> *value, size_t index, size_t length_in_bytes, char **buffer)</td></tr>
+<tr class="memdesc:aa21177addf47083b566d433ea845f1e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a single string in a string tensor Do not zero terminate the string data.  <br /></td></tr>
+<tr class="separator:aa21177addf47083b566d433ea845f1e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -4838,6 +4841,59 @@ Public Attributes</h2></td></tr>
 <p><dl class="section return"><dt>Returns</dt><dd>If no error, nullptr will be returned. If there is an error, a pointer to an <a class="el" href="group___global.html#gabbdf49d59489efef1b125d8e0d59adc6">OrtStatus</a> that contains error details will be returned. Use <a class="el" href="struct_ort_api.html#a9b21334e290855a585f53d53dda44551">OrtApi::ReleaseStatus</a> to free this pointer.</dd></dl>
 </p>
 <dl class="section since"><dt>Since</dt><dd>Version 1.15. </dd></dl>
+
+</div>
+</div>
+<a id="aa21177addf47083b566d433ea845f1e2" name="aa21177addf47083b566d433ea845f1e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa21177addf47083b566d433ea845f1e2">&#9670;&#160;</a></span>GetResizedStringTensorElementBuffer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group___global.html#gabbdf49d59489efef1b125d8e0d59adc6">OrtStatus</a> * OrtApi::GetResizedStringTensorElementBuffer </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group___global.html#gaab167acf3fe9dabc0195b993fbe7ee7d">OrtValue</a> *&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>length_in_bytes</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>buffer</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set a single string in a string tensor Do not zero terminate the string data. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>A string tensor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">index</td><td>- flat index of the element </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">length_in_bytes</td><td>length of the buffer in utf-8 bytes (without the null terminator) </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">buffer</td><td>- address of return value</td></tr>
+  </table>
+  </dd>
+</dl>
+<p><dl class="section return"><dt>Returns</dt><dd>If no error, nullptr will be returned. If there is an error, a pointer to an <a class="el" href="group___global.html#gabbdf49d59489efef1b125d8e0d59adc6">OrtStatus</a> that contains error details will be returned. Use <a class="el" href="struct_ort_api.html#a9b21334e290855a585f53d53dda44551">OrtApi::ReleaseStatus</a> to free this pointer.</dd></dl>
+ </p>
 
 </div>
 </div>

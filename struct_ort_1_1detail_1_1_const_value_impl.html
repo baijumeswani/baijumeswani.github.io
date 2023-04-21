@@ -163,6 +163,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a11173caf6ac2fdc03fb1c3981fec9b3d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_ort_1_1detail_1_1_const_value_impl.html#a11173caf6ac2fdc03fb1c3981fec9b3d">GetStringTensorElement</a> (size_t buffer_length, size_t element_index, void *buffer) const</td></tr>
 <tr class="memdesc:a11173caf6ac2fdc03fb1c3981fec9b3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The API copies UTF-8 encoded bytes for the requested string element contained within a tensor or a sparse tensor into a provided buffer. Use <a class="el" href="struct_ort_1_1detail_1_1_const_value_impl.html#a21460daeba8be912b5d21ef9aa6dd717" title="The API returns a byte length of UTF-8 encoded string element contained in either a tensor or a spare...">GetStringTensorElementLength()</a> to obtain the length of the buffer to allocate.  <br /></td></tr>
 <tr class="separator:a11173caf6ac2fdc03fb1c3981fec9b3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e2a3eb2f60e10b5d5832b57d46c611a"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_ort_1_1detail_1_1_const_value_impl.html#a1e2a3eb2f60e10b5d5832b57d46c611a">GetStringTensorElement</a> (size_t element_index) const</td></tr>
+<tr class="memdesc:a1e2a3eb2f60e10b5d5832b57d46c611a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns string tensor UTF-8 encoded string element. Use of this API is recommended over <a class="el" href="struct_ort_1_1detail_1_1_const_value_impl.html#a11173caf6ac2fdc03fb1c3981fec9b3d" title="The API copies UTF-8 encoded bytes for the requested string element contained within a tensor or a sp...">GetStringTensorElement()</a> that takes void* buffer pointer.  <br /></td></tr>
+<tr class="separator:a1e2a3eb2f60e10b5d5832b57d46c611a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a21460daeba8be912b5d21ef9aa6dd717"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_ort_1_1detail_1_1_const_value_impl.html#a21460daeba8be912b5d21ef9aa6dd717">GetStringTensorElementLength</a> (size_t element_index) const</td></tr>
 <tr class="memdesc:a21460daeba8be912b5d21ef9aa6dd717"><td class="mdescLeft">&#160;</td><td class="mdescRight">The API returns a byte length of UTF-8 encoded string element contained in either a tensor or a spare tensor values.  <br /></td></tr>
 <tr class="separator:a21460daeba8be912b5d21ef9aa6dd717"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -521,7 +524,7 @@ template&lt;typename T &gt; </div>
 </div>
 </div>
 <a id="a11173caf6ac2fdc03fb1c3981fec9b3d" name="a11173caf6ac2fdc03fb1c3981fec9b3d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a11173caf6ac2fdc03fb1c3981fec9b3d">&#9670;&#160;</a></span>GetStringTensorElement()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a11173caf6ac2fdc03fb1c3981fec9b3d">&#9670;&#160;</a></span>GetStringTensorElement() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -563,6 +566,35 @@ template&lt;typename T &gt; </div>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a1e2a3eb2f60e10b5d5832b57d46c611a" name="a1e2a3eb2f60e10b5d5832b57d46c611a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e2a3eb2f60e10b5d5832b57d46c611a">&#9670;&#160;</a></span>GetStringTensorElement() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string <a class="el" href="struct_ort_1_1detail_1_1_const_value_impl.html">Ort::detail::ConstValueImpl</a>&lt; T &gt;::GetStringTensorElement </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>element_index</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns string tensor UTF-8 encoded string element. Use of this API is recommended over <a class="el" href="struct_ort_1_1detail_1_1_const_value_impl.html#a11173caf6ac2fdc03fb1c3981fec9b3d" title="The API copies UTF-8 encoded bytes for the requested string element contained within a tensor or a sp...">GetStringTensorElement()</a> that takes void* buffer pointer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">element_index</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>std::string</dd></dl>
 
 </div>
 </div>

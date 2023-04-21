@@ -293,7 +293,7 @@ $(document).ready(function(){initNavTree('struct_ort_training_api.html',''); ini
 <p>The parameters_buffer argument has to be of the size given by <a class="el" href="struct_ort_training_api.html#a90c30d5573bb7134a00951ef81f7270e" title="Retrieves the size of all the parameters.">OrtTrainingApi::GetParametersSize</a> api call, with matching setting for trainable_only argument. All the target parameters must be of the same datatype. This is a complementary function to <a class="el" href="struct_ort_training_api.html#a0e49d46ba8117d0f5da98eee9d51a01d" title="Copy parameter values from the given contiguous buffer held by parameters_buffer to the training stat...">OrtTrainingApi::CopyBufferToParameters</a> and can be used to load updated buffer values onto the training state. Parameter ordering is preserved. User is responsible for allocating and freeing the resources used by the parameters_buffer.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">sess</td><td>The training session. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">sess</td><td>The <code>this</code> pointer to the training session. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">trainable_only</td><td>Whether to skip non-trainable parameters </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">parameters_buffer</td><td>The pre-allocated OrtValue buffer to copy from.</td></tr>
   </table>
@@ -340,7 +340,7 @@ $(document).ready(function(){initNavTree('struct_ort_training_api.html',''); ini
 <p>The parameters_buffer has to be of the size given by GetParametersSize api call, with matching setting for the argument trainable_only. All the target parameters must be of the same datatype. The OrtValue must be pre-allocated onto the desired device. This is a complementary function to <a class="el" href="struct_ort_training_api.html#a0e49d46ba8117d0f5da98eee9d51a01d" title="Copy parameter values from the given contiguous buffer held by parameters_buffer to the training stat...">OrtTrainingApi::CopyBufferToParameters</a>. Parameter ordering is preserved. User is responsible for allocating and freeing the resources used by the parameters_buffer.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">sess</td><td>The training session. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">sess</td><td>The <code>this</code> pointer to the training session. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">trainable_only</td><td>Whether to skip non-trainable parameters </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">parameters_buffer</td><td>The pre-allocated OrtValue buffer to copy onto.</td></tr>
   </table>
@@ -486,7 +486,7 @@ $(document).ready(function(){initNavTree('struct_ort_training_api.html',''); ini
 <p>This function performs an eval step that computes the outputs of the eval model for the given inputs. The eval step is performed based on the eval model that was provided to the training session.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">sess</td><td>The training session which owns the eval model. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">sess</td><td>The <code>this</code> pointer to the training session. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">run_options</td><td>Run options for this eval step. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">inputs_len</td><td>Number of user inputs to the eval model. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">inputs</td><td>The user inputs to the eval model. </td></tr>
@@ -542,7 +542,7 @@ $(document).ready(function(){initNavTree('struct_ort_training_api.html',''); ini
 <p>If the training session was provided with an eval model, the training session can generate an inference model if it knows the inference graph outputs. The input inference graph outputs are used to prune the eval model so that the inference model's outputs align with the provided outputs. The exported model is saved at the path provided and can be used for inferencing with InferenceSession. </p><dl class="section note"><dt>Note</dt><dd>Note that the function re-loads the eval model from the path provided to <a class="el" href="struct_ort_training_api.html#a22b4832517a0e8109ed7f243c8b9d41f" title="Create a training session that can be used to begin or resume training.">OrtTrainingApi::CreateTrainingSession</a> and expects that this path still be valid.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">sess</td><td>The training session. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">sess</td><td>The <code>this</code> pointer to the training session. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">inference_model_path</td><td>Path where the inference model should be serialized to. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">graph_outputs_len</td><td>Size of the graph output names array. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">graph_output_names</td><td>Names of the outputs that are needed in the inference model.</td></tr>
@@ -584,7 +584,7 @@ $(document).ready(function(){initNavTree('struct_ort_training_api.html',''); ini
 <p>This function allows users to get the learning rate for the training session. The current learning rate is maintained by the training session, and users can query it for the purpose of implementing their own learning rate schedulers.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">sess</td><td>The training session on which the learning rate needs to be set. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">sess</td><td>The <code>this</code> pointer to the training session. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">learning_rate</td><td>Learning rate currently in use by the training session.</td></tr>
   </table>
   </dd>
@@ -630,7 +630,7 @@ $(document).ready(function(){initNavTree('struct_ort_training_api.html',''); ini
 <p>Calculates the total number of primitive (datatype of the parameters) elements of all the parameters in the training state. When trainable_only argument is true, the size is calculated for trainable params only.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">sess</td><td>The training session. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">sess</td><td>The <code>this</code> pointer to the training session. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">out</td><td>Size of all parameter elements. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">trainable_only</td><td>Whether to skip non-trainable parameters</td></tr>
   </table>
@@ -722,7 +722,7 @@ $(document).ready(function(){initNavTree('struct_ort_training_api.html',''); ini
 <p>This function sets the internal state of the training session such that the gradients of the trainable parameters in the OrtCheckpointState will be scheduled to be reset just before the new gradients are computed on the next invocation of the next <a class="el" href="struct_ort_training_api.html#a29a0070388f7e315368df8add7f6fe68" title="Computes the outputs of the training model and the gradients of the trainable parameters for the give...">OrtTrainingApi::TrainStep</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">session</td><td>The training session which will reset the gradients.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">session</td><td>The <code>this</code> pointer to the training session.</td></tr>
   </table>
   </dd>
 </dl>
@@ -801,7 +801,7 @@ $(document).ready(function(){initNavTree('struct_ort_training_api.html',''); ini
 <p>This function performs the weight update step that updates the trainable parameters such that they take a step in the direction of their gradients (gradient descent). The optimizer step is performed based on the optimizer model that was provided to the training session. The updated parameters are stored inside the training state so that they can be used by the next <a class="el" href="struct_ort_training_api.html#a29a0070388f7e315368df8add7f6fe68" title="Computes the outputs of the training model and the gradients of the trainable parameters for the give...">OrtTrainingApi::TrainStep</a> function call.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">sess</td><td>The training session which owns the optimizer model. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">sess</td><td>The <code>this</code> pointer to the training session. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">run_options</td><td>Run options for this optimizer step.</td></tr>
   </table>
   </dd>
@@ -853,7 +853,7 @@ $(document).ready(function(){initNavTree('struct_ort_training_api.html',''); ini
 <p>Register a linear learning rate scheduler that decays the learning rate by linearly updated multiplicative factor from the initial learning rate set on the training session to 0. The decay is performed after the initial warm up phase where the learning rate is linearly incremented from 0 to the initial learning rate provided.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">sess</td><td>The training session that should use the linear learning rate scheduler. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">sess</td><td>The <code>this</code> pointer to the training session. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">warmup_step_count</td><td>Warmup steps for LR warmup. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">total_step_count</td><td>Total step count. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">initial_lr</td><td>The initial learning rate to be used by the training session.</td></tr>
@@ -974,7 +974,7 @@ $(document).ready(function(){initNavTree('struct_ort_training_api.html',''); ini
 <p>Takes a scheduler step that updates the learning rate that is being used by the training session. This function should typically be called before invoking the optimizer step for each round, or as determined necessary to update the learning rate being used by the training session. </p><dl class="section note"><dt>Note</dt><dd>Please note that a valid predefined learning rate scheduler must be first registered to invoke this function.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">sess</td><td>The training session that has the registered learning rate scheduler.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">sess</td><td>The <code>this</code> pointer to the training session.</td></tr>
   </table>
   </dd>
 </dl>
@@ -1013,7 +1013,7 @@ $(document).ready(function(){initNavTree('struct_ort_training_api.html',''); ini
 <p>This function allows users to set the learning rate for the training session. The current learning rate is maintained by the training session and can be overwritten by invoking this function with the desired learning rate. This function should not be used when a valid learning rate scheduler is registered. It should be used either to set the learning rate derived from a custom learning rate scheduler or to set a constant learning rate to be used throughout the training session. </p><dl class="section note"><dt>Note</dt><dd>Please note that this function does not set the initial learning rate that may be needed by the predefined learning rate schedulers. To set the initial learning rate for learning rate schedulers, please look at the function <a class="el" href="struct_ort_training_api.html#a5609572bb637dba45e03230b56c001c1" title="Registers a linear learning rate scheduler for the training session.">OrtTrainingApi::RegisterLinearLRScheduler</a>.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">sess</td><td>The training session on which the learning rate needs to be set. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">sess</td><td>The <code>this</code> pointer to the training session. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">learning_rate</td><td>Desired learning rate to be set.</td></tr>
   </table>
   </dd>
@@ -1082,7 +1082,7 @@ $(document).ready(function(){initNavTree('struct_ort_training_api.html',''); ini
 <p>This function returns the number of inputs of the eval model so that the user can accordingly allocate the <a class="el" href="group___global.html#gaab167acf3fe9dabc0195b993fbe7ee7d">OrtValue(s)</a> provided to the <a class="el" href="struct_ort_training_api.html#a16284774ec66e8d8823c00e28d649b06" title="Computes the outputs for the eval model for the given inputs.">OrtTrainingApi::EvalStep</a> function.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">sess</td><td>The training session which owns the eval model. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">sess</td><td>The <code>this</code> pointer to the training session. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">out</td><td>Number of user inputs in the eval model.</td></tr>
   </table>
   </dd>
@@ -1134,7 +1134,7 @@ $(document).ready(function(){initNavTree('struct_ort_training_api.html',''); ini
 <p>This function returns the names of inputs of the eval model that can be associated with the <a class="el" href="group___global.html#gaab167acf3fe9dabc0195b993fbe7ee7d">OrtValue(s)</a> provided to the <a class="el" href="struct_ort_training_api.html#a16284774ec66e8d8823c00e28d649b06" title="Computes the outputs for the eval model for the given inputs.">OrtTrainingApi::EvalStep</a> function.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">sess</td><td>The training session which owns the training model. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">sess</td><td>The <code>this</code> pointer to the training session. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">index</td><td>The index of the eval model input name requested. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">allocator</td><td>The allocator to use to allocate the memory for the requested name. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">output</td><td>Name of the user input for the eval model at the given index.</td></tr>
@@ -1176,7 +1176,7 @@ $(document).ready(function(){initNavTree('struct_ort_training_api.html',''); ini
 <p>This function returns the number of outputs of the eval model so that the user can allocate space for the number of outputs when <a class="el" href="struct_ort_training_api.html#a16284774ec66e8d8823c00e28d649b06" title="Computes the outputs for the eval model for the given inputs.">OrtTrainingApi::EvalStep</a> is invoked.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">sess</td><td>The training session which owns the eval model. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">sess</td><td>The <code>this</code> pointer to the training session. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">out</td><td>Number of user outputs in the eval model.</td></tr>
   </table>
   </dd>
@@ -1228,7 +1228,7 @@ $(document).ready(function(){initNavTree('struct_ort_training_api.html',''); ini
 <p>This function returns the names of outputs of the eval model that can be associated with the <a class="el" href="group___global.html#gaab167acf3fe9dabc0195b993fbe7ee7d">OrtValue(s)</a> returned by the <a class="el" href="struct_ort_training_api.html#a16284774ec66e8d8823c00e28d649b06" title="Computes the outputs for the eval model for the given inputs.">OrtTrainingApi::EvalStep</a> function.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">sess</td><td>The training session which owns the eval model. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">sess</td><td>The <code>this</code> pointer to the training session. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">index</td><td>Index of the output name requested. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">allocator</td><td>Allocator to use to allocate the memory for the name. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">output</td><td>Name of the eval model output at the given index.</td></tr>
@@ -1270,7 +1270,7 @@ $(document).ready(function(){initNavTree('struct_ort_training_api.html',''); ini
 <p>This function returns the number of inputs of the training model so that the user can accordingly allocate the <a class="el" href="group___global.html#gaab167acf3fe9dabc0195b993fbe7ee7d">OrtValue(s)</a> provided to the <a class="el" href="struct_ort_training_api.html#a29a0070388f7e315368df8add7f6fe68" title="Computes the outputs of the training model and the gradients of the trainable parameters for the give...">OrtTrainingApi::TrainStep</a> function.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">sess</td><td>The training session which owns the training model. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">sess</td><td>The <code>this</code> pointer to the training session. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">out</td><td>Number of user inputs in the training model.</td></tr>
   </table>
   </dd>
@@ -1322,7 +1322,7 @@ $(document).ready(function(){initNavTree('struct_ort_training_api.html',''); ini
 <p>This function returns the names of inputs of the training model that can be associated with the <a class="el" href="group___global.html#gaab167acf3fe9dabc0195b993fbe7ee7d">OrtValue(s)</a> provided to the <a class="el" href="struct_ort_training_api.html#a29a0070388f7e315368df8add7f6fe68" title="Computes the outputs of the training model and the gradients of the trainable parameters for the give...">OrtTrainingApi::TrainStep</a> function.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">sess</td><td>The training session which owns the training model. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">sess</td><td>The <code>this</code> pointer to the training session. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">index</td><td>The index of the training model input name requested. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">allocator</td><td>The allocator to use to allocate the memory for the requested name. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">output</td><td>Name of the user input for the training model at the given index.</td></tr>
@@ -1364,7 +1364,7 @@ $(document).ready(function(){initNavTree('struct_ort_training_api.html',''); ini
 <p>This function returns the number of outputs of the training model so that the user can allocate space for the number of outputs when <a class="el" href="struct_ort_training_api.html#a29a0070388f7e315368df8add7f6fe68" title="Computes the outputs of the training model and the gradients of the trainable parameters for the give...">OrtTrainingApi::TrainStep</a> is invoked.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">sess</td><td>The training session which owns the training model. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">sess</td><td>The <code>this</code> pointer to the training session. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">out</td><td>Number of user outputs in the training model.</td></tr>
   </table>
   </dd>
@@ -1416,7 +1416,7 @@ $(document).ready(function(){initNavTree('struct_ort_training_api.html',''); ini
 <p>This function returns the names of outputs of the training model that can be associated with the <a class="el" href="group___global.html#gaab167acf3fe9dabc0195b993fbe7ee7d">OrtValue(s)</a> returned by the <a class="el" href="struct_ort_training_api.html#a29a0070388f7e315368df8add7f6fe68" title="Computes the outputs of the training model and the gradients of the trainable parameters for the give...">OrtTrainingApi::TrainStep</a> function.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">sess</td><td>The training session which owns the training model. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">sess</td><td>The <code>this</code> pointer to the training session. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">index</td><td>Index of the output name requested. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">allocator</td><td>Allocator to use to allocate the memory for the name. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">output</td><td>Name of the training model output at the given index.</td></tr>
@@ -1482,7 +1482,7 @@ $(document).ready(function(){initNavTree('struct_ort_training_api.html',''); ini
 <p>This function performs a training step that computes the outputs of the training model and the gradients of the trainable parameters for the given inputs. The train step is performed based on the training model that was provided to the training session. The <a class="el" href="struct_ort_training_api.html#a29a0070388f7e315368df8add7f6fe68" title="Computes the outputs of the training model and the gradients of the trainable parameters for the give...">OrtTrainingApi::TrainStep</a> is equivalent of running forward propagation and backward propagation in a single step. The gradients computed are stored inside the training session state so they can be later consumed by the <a class="el" href="struct_ort_training_api.html#aee76c22082fad96f6d49c817a26d392d" title="Performs the weight updates for the trainable parameters using the optimizer model.">OrtTrainingApi::OptimizerStep</a> function. The gradients can be lazily reset by invoking the <a class="el" href="struct_ort_training_api.html#a19cdaccb9c13d19e79b77056c366dda2" title="Reset the gradients of all trainable parameters to zero lazily.">OrtTrainingApi::LazyResetGrad</a> function.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">sess</td><td>The training session which owns the training model. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">sess</td><td>The <code>this</code> pointer to the training session. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">run_options</td><td>Run options for this training step. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">inputs_len</td><td>Number of user inputs to the training model. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">inputs</td><td>The user inputs to the training model. </td></tr>

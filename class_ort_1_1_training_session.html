@@ -114,7 +114,7 @@ Inheritance diagram for Ort::TrainingSession:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td colspan="2"><div class="groupHeader">Constructing the Ort::TrainingSession</div></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Constructing the Training Session</div></td></tr>
 <tr class="memitem:af36397a61919aa841088a5f17b19160c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ort_1_1_training_session.html#af36397a61919aa841088a5f17b19160c">TrainingSession</a> (const <a class="el" href="struct_ort_1_1_session_options.html">SessionOptions</a> &amp;session_options, <a class="el" href="class_ort_1_1_checkpoint_state.html">CheckpointState</a> &amp;checkpoint_state, const std::basic_string&lt; char &gt; &amp;train_model_path, const std::optional&lt; std::basic_string&lt; char &gt; &gt; &amp;eval_model_path=std::nullopt, const std::optional&lt; std::basic_string&lt; char &gt; &gt; &amp;optimizer_model_path=std::nullopt)</td></tr>
 <tr class="memdesc:af36397a61919aa841088a5f17b19160c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a training session that can be used to begin or resume training.  <br /></td></tr>
 <tr class="separator:af36397a61919aa841088a5f17b19160c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -249,7 +249,7 @@ Additional Inherited Members</h2></td></tr>
 <p>This constructor instantiates the training session based on the env and session options provided that can begin or resume training from a given checkpoint state for the given onnx models. The checkpoint state represents the parameters of the training session which will be moved to the device specified by the user through the session options (if necessary).</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">session_options</td><td><a class="el" href="struct_ort_1_1_session.html" title="Wrapper around OrtSession.">Session</a> options that the user can customize for this training session. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">session_options</td><td><a class="el" href="struct_ort_1_1_session_options.html" title="Wrapper around OrtSessionOptions.">SessionOptions</a> that the user can customize for this training session. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">checkpoint_state</td><td>Training states that the training session uses as a starting point for training. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">train_model_path</td><td>Model to be used to perform training. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">eval_model_path</td><td>Model to be used to perform evaluation. </td></tr>
