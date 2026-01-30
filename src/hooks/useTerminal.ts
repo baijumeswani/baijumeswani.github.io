@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { about } from '../data/about';
-import data from '/funfacts.json';
+import data from '../data/funfacts.json';
 
 const commands: Record<string, () => string | Promise<string> | void> = {
   '?': () => `
