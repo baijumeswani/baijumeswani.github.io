@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { about } from '../data/about';
+import data from '/funfacts.json';
 
 const commands: Record<string, () => string | Promise<string> | void> = {
   '?': () => `
@@ -28,8 +29,6 @@ const commands: Record<string, () => string | Promise<string> | void> = {
     Twitter:    https://twitter.com/your-username
   `,
   fun: async () => {
-    const response = await fetch('/funfacts.json');
-    const data = await response.json();
     const fact = data.facts[Math.floor(Math.random() * data.facts.length)];
     return `💡 Fun Fact: ${fact}`;
   },
