@@ -1,13 +1,11 @@
-import React from 'react';
-import './styles/global.css';
 import Terminal from './components/Terminal';
 
-const App: React.FC = () => {
+function App() {
   return (
-    <main>
+    <div className="w-full h-full">
       <Terminal />
-    </main>
+    </div>
   );
-};
+}
 
 export default App;

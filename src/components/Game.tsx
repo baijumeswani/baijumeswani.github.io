@@ -1,154 +1,120 @@
-import React, { useState, useEffect, useImperativeHandle, forwardRef } from 'react';
+import React, { useEffect, useRef } from 'react';
+import { useGame } from '../hooks/useGameLoop';
 
 interface GameProps {
-  exitGame: () => void;
+  onExit: () => void;
 }
 
-const GAME_WIDTH = 20;
-const GAME_HEIGHT = 15;
+const Game: React.FC<GameProps> = ({ onExit }) => {
+  const { state, dispatch } = useGame();
+  const containerRef = useRef<HTMLDivElement>(null);
 
-const Game = forwardRef<any, GameProps>(({ exitGame }, ref) => {
-  const [player, setPlayer] = useState({ x: GAME_WIDTH / 2, y: GAME_HEIGHT - 1 });
-  const [obstacles, setObstacles] = useState<{ x: number; y: number }[]>([]);
-  const [windows, setWindows] = useState<{ x: number; y: number; open: boolean }[]>([]);
-  const [score, setScore] = useState(0);
-  const [gameOver, setGameOver] = useState(false);
-
-  // Initialize windows
   useEffect(() => {
-    const newWindows = [];
-    for (let y = 0; y < GAME_HEIGHT -1; y += 2) {
-      for (let x = 2; x < GAME_WIDTH - 2; x += 4) {
-        newWindows.push({ x, y, open: true });
-      }
-    }
-    setWindows(newWindows);
+    containerRef.current?.focus();
   }, []);
 
-  // Game loop
-  useEffect(() => {
-    if (gameOver) return;
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    e.preventDefault();
+    e.stopPropagation(); // prevent terminal from handling it
 
-    const interval = setInterval(() => {
-      // Move obstacles
-      setObstacles((obs) =>
-        obs
-          .map((o) => ({ ...o, y: o.y + 1 }))
-          .filter((o) => o.y < GAME_HEIGHT)
-      );
-
-      // Add new obstacles
-      if (Math.random() < 0.3) {
-        setObstacles((obs) => [
-          ...obs,
-          { x: Math.floor(Math.random() * (GAME_WIDTH - 2)) + 1, y: 0 },
-        ]);
-      }
-      
-      // Open/close windows
-      setWindows(wins => wins.map(w => ({...w, open: Math.random() < 0.9 ? w.open : !w.open })));
-
-      // Update score
-      setScore((s) => s + 1);
-
-      // Collision detection
-      if (obstacles.some((o) => o.x === player.x && o.y === player.y)) {
-        setGameOver(true);
-      }
-    }, 200);
-    return () => clearInterval(interval);
-  }, [gameOver, obstacles, player]);
-
-  useImperativeHandle(ref, () => ({
-    handleGameKey(key: string) {
-      if (gameOver) return;
-
-      setPlayer((p) => {
-        let newX = p.x;
-        let newY = p.y;
-        if (key === 'ArrowUp' || key === 'w') newY--;
-        if (key === 'ArrowDown' || key === 's') newY++;
-        if (key === 'ArrowLeft' || key === 'a') newX--;
-        if (key === 'ArrowRight' || key === 'd') newX++;
-
-        // boundary check
-        if (newX < 1) newX = 1;
-        if (newX >= GAME_WIDTH - 1) newX = GAME_WIDTH - 2;
-        if (newY < 0) newY = 0;
-        if (newY >= GAME_HEIGHT) newY = GAME_HEIGHT - 1;
-
-        // window collision
-        const targetWindow = windows.find(w => w.x === newX && w.y === newY);
-        if (targetWindow && !targetWindow.open) {
-          return p; // can't move into a closed window
-        }
-
-        return { x: newX, y: newY };
-      });
-    },
-  }));
-
-  // Rendering
-  const renderGame = () => {
-    const grid = Array(GAME_HEIGHT)
-      .fill(null)
-      .map(() => Array(GAME_WIDTH).fill(' '));
-
-    // Draw building walls
-    for (let i = 0; i < GAME_HEIGHT; i++) {
-      grid[i][0] = '|';
-      grid[i][GAME_WIDTH - 1] = '|';
+    if (state.isGameOver) {
+        if (e.key === 'Enter') dispatch({ type: 'RESTART' });
+        if (e.key === 'q' || e.key === 'Q') onExit();
+        return;
     }
 
-    // Draw windows
-    windows.forEach(w => {
-      grid[w.y][w.x] = w.open ? 'O' : 'X';
-    });
-
-    // Draw obstacles
-    obstacles.forEach((o) => {
-      grid[o.y][o.x] = '*';
-    });
-    
-    // Draw player
-    if (!gameOver) {
-      grid[player.y][player.x] = '@';
+    if (e.key === 'Escape' || e.key === 'p') {
+        if (state.isPaused) dispatch({ type: 'RESUME' });
+        else dispatch({ type: 'PAUSE' });
+        return;
     }
 
-    return grid.map((row) => row.join('')).join('\n');
+    if (state.isPaused) return;
+
+    if (e.key === 'ArrowUp' || e.key === 'w') dispatch({ type: 'MOVE_PLAYER', dx: 0, dy: 1 });
+    else if (e.key === 'ArrowDown' || e.key === 's') dispatch({ type: 'MOVE_PLAYER', dx: 0, dy: -1 });
+    else if (e.key === 'ArrowLeft' || e.key === 'a') dispatch({ type: 'MOVE_PLAYER', dx: -1, dy: 0 });
+    else if (e.key === 'ArrowRight' || e.key === 'd') dispatch({ type: 'MOVE_PLAYER', dx: 1, dy: 0 });
+    else if (e.key === 'c' && e.ctrlKey) onExit();
   };
 
-  return (
-    <pre>
-      {renderGame()}
-      <div>Score: {score}</div>
-      {gameOver && <div>Game Over</div>}
-      <div>Press Ctrl+C to exit</div>
-      <div className="mobile-controls">
-        <button onClick={() => handleGameKey('ArrowUp')}>Up</button>
-        <div>
-          <button onClick={() => handleGameKey('ArrowLeft')}>Left</button>
-          <button onClick={() => handleGameKey('ArrowRight')}>Right</button>
+  const renderGrid = () => {
+      const rows = [];
+      const { width, height, cameraY, player, obstacles } = state;
+      
+      // HUD
+      rows.push(` Score: ${state.score}  |  Floor: ${state.floor}  |  High: ${state.highScore} `);
+      rows.push('─'.repeat(width));
+
+      for (let y = height - 1; y >= 0; y--) {
+          let rowStr = '';
+          const worldY = y + Math.floor(cameraY);
+          
+          for (let x = 0; x < width; x++) {
+              let char = ' ';
+              
+              // Borders
+              if (x === 0 || x === width - 1) {
+                  char = '|';
+              } else {
+                  // Game Objects
+                  if (Math.round(player.x) === x && Math.round(player.y) === worldY) {
+                      char = '@';
+                  } else {
+                      const obstacle = obstacles.find(o => Math.round(o.pos.x) === x && Math.round(o.pos.y) === worldY);
+                      if (obstacle) {
+                          char = '*';
+                      } else {
+                          // Background pattern
+                          if (x % 10 === 0) {
+                              if (worldY % 5 === 2) char = '[';
+                              else if (worldY % 5 === 3) char = ']';
+                          }
+                      }
+                  }
+              }
+              rowStr += char;
+          }
+          rows.push(rowStr);
+      }
+      return rows.join('\n');
+  };
+
+  if (state.isGameOver) {
+      return (
+        <div 
+          ref={containerRef} 
+          tabIndex={0} 
+          onKeyDown={handleKeyDown} 
+          className="w-full h-full flex items-center justify-center bg-black text-white outline-none absolute inset-0 z-50"
+        >
+            <div className="text-center font-mono">
+                <div className="text-red-500 font-bold mb-4 text-4xl">GAME OVER</div>
+                <div className="text-2xl mb-2">Score: {state.score}</div>
+                <div className="text-xl mb-8">High Score: {state.highScore}</div>
+                <div className="text-gray-400">Press Enter to retry or Q to quit</div>
+            </div>
         </div>
-        <button onClick={() => handleGameKey('ArrowDown')}>Down</button>
-      </div>
-      <style>{`
-        .mobile-controls {
-          display: none;
-        }
-        @media (max-width: 768px) {
-          .mobile-controls {
-            display: block;
-            text-align: center;
-          }
-          .mobile-controls button {
-            margin: 5px;
-            padding: 10px;
-          }
-        }
-      `}</style>
-    </pre>
+      );
+  }
+
+  return (
+    <div 
+      ref={containerRef} 
+      tabIndex={0} 
+      onKeyDown={handleKeyDown} 
+      className="w-full h-full flex items-center justify-center bg-black text-white outline-none absolute inset-0 z-50"
+    >
+      <pre className="font-mono leading-none whitespace-pre select-none text-sm md:text-base">
+        {renderGrid()}
+      </pre>
+      {state.isPaused && (
+          <div className="absolute inset-0 flex items-center justify-center bg-black/50">
+              <div className="text-white font-bold text-4xl">PAUSED</div>
+          </div>
+      )}
+    </div>
   );
-});
+};
 
 export default Game;
