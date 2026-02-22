@@ -15,7 +15,7 @@ function terminalReducer(state: TerminalState, action: TerminalAction): Terminal
       return {
         ...state,
         history: [...state.history, action.command],
-        output: [...state.output, { command: action.command, output: action.output, id: crypto.randomUUID() }],
+        output: [...state.output, { command: action.command, output: action.output, id: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}` }],
         currentInput: '',
       };
     case 'CLEAR':
