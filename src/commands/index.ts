@@ -5,7 +5,7 @@ import './experience';
 import './projects';
 import './contact';
 import './social';
-import './resume';
+
 import './fun';
 import './theme';
 import './history';

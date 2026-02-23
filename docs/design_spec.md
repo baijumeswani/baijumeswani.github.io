@@ -57,7 +57,6 @@ The goal is to emulate a modern terminal, but with a polished, web-native feel.
       skills     - List my technical skills
       contact    - Display my contact information
       social     - Show links to my social media profiles
-      resume     - Open my resume
       fun        - Display a random fun fact
       play       - Play a game
       theme      - Toggle dark / light theme
@@ -83,7 +82,6 @@ The goal is to emulate a modern terminal, but with a polished, web-native feel.
       skills     - List my technical skills
       contact    - Display my contact information
       social     - Show links to my social media profiles
-      resume     - Open my resume
       fun        - Display a random fun fact
       play       - Play a game
       theme      - Toggle dark / light theme
@@ -271,23 +269,13 @@ The goal is to emulate a modern terminal, but with a polished, web-native feel.
     ```
 *   Paginated if the list exceeds the terminal viewport height.
 
-### 4.10. `resume` - Resume
-
-*   **Description**: Provides a link to a downloadable PDF resume.
-*   **Output**:
-    ```
-    📄 Resume: https://baijumeswani.github.io/resume.pdf  [↗ open]  [⬇ download]
-    ```
-*   The PDF is stored in `public/resume.pdf`.
-*   Two actions: open in a new tab, or trigger a browser download.
-
-### 4.11. `theme` - Toggle Theme
+### 4.10. `theme` - Toggle Theme
 
 *   **Description**: Toggles between dark and light themes.
 *   **Output**: `🎨 Theme switched to <light|dark>.`
 *   The preference is saved to `localStorage` and applied immediately. Theme switching uses the **View Transitions API** for a smooth crossfade (falls back to instant swap in unsupported browsers).
 
-### 4.12. `history` - Command History
+### 4.11. `history` - Command History
 
 *   **Description**: Displays a numbered list of all commands entered in the current session.
 *   **Output Format**:
@@ -298,7 +286,7 @@ The goal is to emulate a modern terminal, but with a polished, web-native feel.
       4  history
     ```
 
-### 4.13. `clear` - Clear Terminal
+### 4.12. `clear` - Clear Terminal
 
 *   **Description**: Clears all output from the terminal.
 *   **Behavior**: The welcome banner and help listing are **not** re-displayed. The terminal is left with only a fresh prompt. Equivalent to `Ctrl+L`.
@@ -400,7 +388,6 @@ The goal is to emulate a modern terminal, but with a polished, web-native feel.
 │   ├── manifest.json             # PWA manifest
 │   ├── robots.txt
 │   ├── sitemap.xml
-│   └── resume.pdf
 ├── src/
 │   ├── components/
 │   │   ├── Terminal.tsx
@@ -418,7 +405,6 @@ The goal is to emulate a modern terminal, but with a polished, web-native feel.
 │   │   ├── skills.ts
 │   │   ├── contact.ts
 │   │   ├── social.ts
-│   │   ├── resume.ts
 │   │   ├── fun.ts
 │   │   ├── play.ts
 │   │   ├── theme.ts
