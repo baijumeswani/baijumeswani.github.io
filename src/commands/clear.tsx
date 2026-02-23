@@ -7,4 +7,4 @@ const clear: CommandHandler = (_args, { dispatch }) => {
 };
 
 registerCommand('clear', 'Clear the terminal screen', clear);
-registerCommand('cls', 'Clear the terminal screen', clear);
+registerCommand('cls', 'Clear the terminal screen', clear, true); // Hidden

@@ -4,8 +4,8 @@ import { useState } from 'react';
 
 const ContactDisplay = () => {
     const [copied, setCopied] = useState(false);
-    const emailUser = 'your.email';
-    const emailDomain = 'example.com';
+    const emailUser = 'baijumeswani';
+    const emailDomain = 'gmail.com';
     const email = `${emailUser}@${emailDomain}`;
 
     const copyToClipboard = () => {
@@ -26,7 +26,7 @@ const ContactDisplay = () => {
 }
 
 const contact: CommandHandler = () => {
-  return <ContactDisplay />;
+    return <ContactDisplay />;
 };
 
 registerCommand('contact', 'Display my contact information', contact);

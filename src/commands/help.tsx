@@ -2,10 +2,12 @@ import { registerCommand, commandRegistry } from './registry';
 import type { CommandHandler } from '../types/commands';
 
 const help: CommandHandler = () => {
-  const commands = Array.from(commandRegistry.entries()).map(([name, { description }]) => ({
-    name,
-    description,
-  }));
+  const commands = Array.from(commandRegistry.entries())
+    .filter(([_, { hidden }]) => !hidden)
+    .map(([name, { description }]) => ({
+      name,
+      description,
+    }));
 
   return (
     <div className="flex flex-col space-y-1">
@@ -23,4 +25,4 @@ const help: CommandHandler = () => {
 };
 
 registerCommand('help', 'Show this help message', help);
-registerCommand('?', 'Show this help message', help);
+registerCommand('?', 'Show this help message', help, true); // Hidden alias

@@ -5,6 +5,7 @@ export type CommandHandler = (args: string[], ctx: TerminalContextType) => Comma
 export interface Command {
   description: string;
   execute: CommandHandler;
+  hidden?: boolean;
 }
 
 export type CommandRegistry = Map<string, Command>;
