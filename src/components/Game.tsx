@@ -63,7 +63,7 @@ const Game: React.FC<GameProps> = ({ onExit }) => {
                   } else {
                       const obstacle = obstacles.find(o => Math.round(o.pos.x) === x && Math.round(o.pos.y) === worldY);
                       if (obstacle) {
-                          char = '*';
+                          char = obstacle.type === 'bird' ? (obstacle.state > 0 ? '>' : '<') : '*';
                       } else {
                           // Background pattern
                           if (x % 10 === 0) {

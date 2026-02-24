@@ -35,7 +35,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
       return { ...state, isPaused: true };
     case 'RESUME':
       return { ...state, isPaused: false };
-    case 'MOVE_PLAYER':
+    case 'MOVE_PLAYER': {
       if (state.isPaused) return state;
       const newX = Math.max(1, Math.min(WIDTH - 2, state.player.x + action.dx));
       const newY = Math.max(state.cameraY, state.player.y + action.dy);
@@ -44,7 +44,8 @@ function gameReducer(state: GameState, action: GameAction): GameState {
           ...state,
           player: { x: newX, y: newY },
       };
-    case 'TICK':
+    }
+    case 'TICK': {
       if (state.isPaused) return state;
       
       // Update camera logic: keep player in lower third if possible, or just scroll up as they climb
@@ -57,23 +58,33 @@ function gameReducer(state: GameState, action: GameAction): GameState {
 
       // Spawn obstacles
       let obstacles = [...state.obstacles];
-      if (Math.random() < 0.05 + (state.floor * 0.005)) { // Increase difficulty
+      const spawnProbability = Math.min(0.05 + (state.floor * 0.015), 0.35); // Max 35% spawn rate
+      if (Math.random() < spawnProbability) {
+          // After floor 5, 25% chance of spawning a bird instead of debris
+          const isBird = state.floor >= 5 && Math.random() < 0.25; 
+          
           obstacles.push({
               id: Math.random(),
-              type: 'debris',
-              pos: { x: Math.floor(Math.random() * (WIDTH - 2)) + 1, y: cameraY + HEIGHT + 2 },
-              state: 0
+              type: isBird ? 'bird' : 'debris',
+              pos: { 
+                  x: isBird ? (Math.random() > 0.5 ? 1 : WIDTH - 2) : Math.floor(Math.random() * (WIDTH - 2)) + 1, 
+                  y: cameraY + HEIGHT + Math.floor(Math.random() * 5) // Stagger spawns vertically
+              },
+              state: isBird ? (Math.random() > 0.5 ? 1 : -1) : 0 // 1 for right, -1 for left
           });
       }
 
       // Move obstacles
+      const fallSpeed = Math.min(0.5 + (state.floor * 0.025), 1.8); // Debris falls faster on higher floors
       obstacles = obstacles.map(o => {
           if (o.type === 'debris') {
-              return { ...o, pos: { ...o.pos, y: o.pos.y - 0.5 } }; // Falls slower than tick? No, 1 cell/tick is fast.
-              // Let's use 0.5 so it falls every 2 ticks
+              return { ...o, pos: { ...o.pos, y: o.pos.y - fallSpeed } };
+          } else if (o.type === 'bird') {
+              const birdSpeed = Math.min(0.4 + (state.floor * 0.01), 1.0);
+              return { ...o, pos: { x: o.pos.x + (o.state * birdSpeed), y: o.pos.y - (fallSpeed * 0.3) } };
           }
           return o;
-      }).filter(o => o.pos.y >= cameraY - 5);
+      }).filter(o => o.pos.y >= cameraY - 5 && o.pos.x > -5 && o.pos.x < WIDTH + 5);
 
       // Check collision
       if (checkCollision(state.player, obstacles)) {
@@ -89,6 +100,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
           score: Math.max(state.score, Math.floor(state.player.y * 10)),
           floor: Math.floor(state.player.y / 5),
       };
+    }
     default:
       return state;
   }

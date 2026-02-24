@@ -2,7 +2,7 @@ import { registerCommand } from './registry';
 import type { CommandHandler } from '../types/commands';
 import { about } from '../data/about';
 
-const AboutDisplay = () => {
+export const AboutDisplay = () => {
   const { text, imageUrl } = about;
 
   const renderTextWithLinks = (text: string) => {

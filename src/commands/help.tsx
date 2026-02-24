@@ -1,9 +1,9 @@
 import { registerCommand, commandRegistry } from './registry';
 import type { CommandHandler } from '../types/commands';
 
-const help: CommandHandler = () => {
+const help: CommandHandler = (_args, { dispatch }) => {
   const commands = Array.from(commandRegistry.entries())
-    .filter(([_, { hidden }]) => !hidden)
+    .filter(([, { hidden }]) => !hidden)
     .map(([name, { description }]) => ({
       name,
       description,
@@ -15,7 +15,12 @@ const help: CommandHandler = () => {
       <div className="pl-4">
         {commands.map(({ name, description }) => (
           <div key={name} className="grid grid-cols-[120px_1fr] gap-4">
-            <span className="font-bold cursor-pointer hover:underline">{name}</span>
+            <span 
+              className="font-bold cursor-pointer hover:underline text-blue-400"
+              onClick={() => dispatch({ type: 'SET_INPUT', input: name })}
+            >
+              {name}
+            </span>
             <span>- {description}</span>
           </div>
         ))}

@@ -2,7 +2,7 @@ import { registerCommand } from './registry';
 import type { CommandHandler } from '../types/commands';
 import { useState } from 'react';
 
-const ContactDisplay = () => {
+export const ContactDisplay = () => {
     const [copied, setCopied] = useState(false);
     const emailUser = 'baijumeswani';
     const emailDomain = 'gmail.com';

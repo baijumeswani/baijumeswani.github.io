@@ -111,6 +111,8 @@ const Terminal: React.FC = () => {
                 autoFocus
                 autoComplete="off"
                 spellCheck="false"
+                autoCapitalize="none"
+                autoCorrect="off"
             />
         </div>
       </div>
