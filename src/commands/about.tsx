@@ -15,7 +15,7 @@ export const AboutDisplay = () => {
             href={part}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-400 hover:underline break-all"
+            className="text-blue-500 hover:text-blue-600 hover:underline break-all"
           >
             {part}
           </a>
@@ -37,7 +37,7 @@ export const AboutDisplay = () => {
             />
         </div>
       )}
-      <div className="whitespace-pre-wrap flex-1 leading-relaxed text-gray-300">
+      <div className="whitespace-pre-wrap flex-1 leading-relaxed text-inherit">
         {renderTextWithLinks(text)}
       </div>
     </div>

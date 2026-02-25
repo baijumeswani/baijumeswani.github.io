@@ -15,7 +15,7 @@ const experienceCmd: CommandHandler = () => {
           </div>
           <ul className="list-disc pl-5">
             {job.highlights.map((highlight, i) => (
-              <li key={i} className="mb-1 text-gray-300">{highlight}</li>
+              <li key={i} className="mb-1 text-inherit">{highlight}</li>
             ))}
           </ul>
         </div>

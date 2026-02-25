@@ -17,8 +17,8 @@ export const ContactDisplay = () => {
     return (
         <div>
             <span className="mr-2">📧 Email:</span>
-            <a href={`mailto:${email}`} className="text-blue-400 hover:underline mr-4">{email}</a>
-            <button onClick={copyToClipboard} className="text-sm text-gray-500 hover:text-gray-300">
+            <a href={`mailto:${email}`} className="text-blue-500 hover:text-blue-600 hover:underline mr-4">{email}</a>
+            <button onClick={copyToClipboard} className="text-sm opacity-70 hover:opacity-100 transition-opacity">
                 {copied ? '✅ copied' : '[click to copy]'}
             </button>
         </div>
