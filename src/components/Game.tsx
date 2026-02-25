@@ -86,30 +86,69 @@ const Game: React.FC<GameProps> = ({ onExit }) => {
           ref={containerRef} 
           tabIndex={0} 
           onKeyDown={handleKeyDown} 
-          className="w-full h-full flex items-center justify-center bg-black text-white outline-none absolute inset-0 z-50"
+          className="w-full h-full flex flex-col items-center justify-center bg-black text-white outline-none absolute inset-0 z-50"
         >
-            <div className="text-center font-mono">
+            <div className="text-center font-mono px-4">
                 <div className="text-red-500 font-bold mb-4 text-4xl">GAME OVER</div>
                 <div className="text-2xl mb-2">Score: {state.score}</div>
                 <div className="text-xl mb-8">High Score: {state.highScore}</div>
-                <div className="text-gray-400">Press Enter to retry or Q to quit</div>
+                <div className="text-gray-400 mb-8">Press Enter to retry or Q to quit</div>
+                <div className="flex gap-4 justify-center md:hidden">
+                    <button onClick={() => dispatch({ type: 'RESTART' })} className="px-6 py-3 bg-white/10 rounded-lg active:bg-white/20 select-none touch-none">Retry</button>
+                    <button onClick={() => onExit()} className="px-6 py-3 bg-red-500/20 rounded-lg active:bg-red-500/40 select-none touch-none">Quit</button>
+                </div>
             </div>
         </div>
       );
   }
+
+  const handleMove = (dx: number, dy: number) => {
+      dispatch({ type: 'MOVE_PLAYER', dx, dy });
+  };
 
   return (
     <div 
       ref={containerRef} 
       tabIndex={0} 
       onKeyDown={handleKeyDown} 
-      className="w-full h-full flex items-center justify-center bg-black text-white outline-none absolute inset-0 z-50"
+      className="w-full h-full flex flex-col items-center justify-center bg-black text-white outline-none absolute inset-0 z-50"
     >
-      <pre className="font-mono leading-none whitespace-pre select-none text-sm md:text-base">
-        {renderGrid()}
-      </pre>
+      <div className="flex-1 w-full flex items-center justify-center min-h-0 overflow-hidden">
+        <pre className="font-mono leading-none whitespace-pre select-none text-[10px] sm:text-xs md:text-base">
+          {renderGrid()}
+        </pre>
+      </div>
+
+      {/* Mobile Controls */}
+      <div className="w-full bg-black/90 flex flex-col items-center justify-center gap-2 pb-8 pt-4 md:hidden z-50 border-t border-white/10 shrink-0">
+          <div className="flex w-full max-w-sm justify-between px-6 mb-2">
+              <button onClick={() => onExit()} className="px-4 py-2 bg-red-500/20 rounded-lg active:bg-red-500/40 font-mono text-sm select-none touch-none">QUIT</button>
+              <button onClick={() => { if (state.isPaused) dispatch({ type: 'RESUME' }); else dispatch({ type: 'PAUSE' }); }} className="px-4 py-2 bg-white/10 rounded-lg active:bg-white/20 font-mono text-sm select-none touch-none">{state.isPaused ? 'RESUME' : 'PAUSE'}</button>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <button 
+                onClick={() => handleMove(0, 1)}
+                className="w-16 h-12 bg-white/10 rounded-lg active:bg-white/30 flex items-center justify-center text-2xl select-none touch-none"
+            >↑</button>
+            <div className="flex gap-2">
+                <button 
+                    onClick={() => handleMove(-1, 0)}
+                    className="w-16 h-12 bg-white/10 rounded-lg active:bg-white/30 flex items-center justify-center text-2xl select-none touch-none"
+                >←</button>
+                <button 
+                    onClick={() => handleMove(0, -1)}
+                    className="w-16 h-12 bg-white/10 rounded-lg active:bg-white/30 flex items-center justify-center text-2xl select-none touch-none"
+                >↓</button>
+                <button 
+                    onClick={() => handleMove(1, 0)}
+                    className="w-16 h-12 bg-white/10 rounded-lg active:bg-white/30 flex items-center justify-center text-2xl select-none touch-none"
+                >→</button>
+            </div>
+          </div>
+      </div>
+
       {state.isPaused && (
-          <div className="absolute inset-0 flex items-center justify-center bg-black/50">
+          <div className="absolute inset-0 flex items-center justify-center bg-black/50 pointer-events-none z-40">
               <div className="text-white font-bold text-4xl">PAUSED</div>
           </div>
       )}
